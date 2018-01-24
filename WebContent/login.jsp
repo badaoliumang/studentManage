@@ -9,50 +9,35 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>学生管理系统</title>
-	<style type="text/css">  
-	body {  
-	    background-image:url('images/loginBg.jpg');  
-	    background-size: cover;  /* 图片平铺拉伸，适应屏幕 */  
-	}  
-	h1{  /* 标题居中  */  
-	    margin:100px auto;  
-	    text-align: center;  
-	}  
-	form{  /* 表单居中  */  
-	    width:300px;  
-	    height:220px;  
-	    margin: 100px auto;  
-	}  
-	.item{    /* item与itemV的设定纯粹是为了让出入框左对齐，名字右对齐    */  
-	    width:80px;  
-	    display:inline-block;  
-	    text-align: right;  
-	}  
-	.itemV{  
-	    width:180px; 
-	    display:inline-block;  
-	    text-align: right;  
-	}  
-	#btn{    /* 按钮居中  */  
-	    margin-left: 80px;  
-	}  
-	</style>  
-
+<title>JSP-JDBC-Servlet-Demo-学生管理系统</title>
+<link rel="stylesheet" href="css/login.css" type="text/css" />
+<link type="text/css" rel="stylesheet" href="font/font-awesome.min.css"/>
 </head>
-<body>
-  <h1>欢迎登录学生管理系统！</h1>  
-	      
-	    <form action="loginServlet" method="post">  
-	    <span class="item">用户名:</span>   
-	    <input type="text" name="username" /></span><br><br>  
-	    <span class="item">密码:</span>   
-	    <input type="text" name="password" /></span><br><br><br>  
-	    <div id="btn">   
-	    <input type="submit" value="登录" />   
-	    <input type="reset" value="重置" />  
-	    </div>  
-	    </form>     
+<body class="loginpage">
+	<div class="loginbox">
+    	<div class="loginboxinner">       	
+            <div class="logo">
+            	<h1 class="logo">JJS.<span>练手项目</span></h1>
+				<span class="slogan">学生管理系统</span>
+            </div><!--logo-->        
+            <br clear="all" />
+            <br />                      
+            <form id="login" action="loginServlet" method="post">           	
+                <div class="username">
+                	<div class="usernameinner">
+                    	<input type="text" name="username" id="username" placeholder="用户名" />
+                    </div>
+                </div>              
+                <div class="password">
+                	<div class="passwordinner">
+                    	<input type="password" name="password" id="password" placeholder="密码" />
+                    </div>
+                </div>               
+                <button type="submit">登录</button>                                     
+            </form>           
+        </div><!--loginboxinner-->
+    </div><!--loginbox-->
+
 
 </body>
 </html>
