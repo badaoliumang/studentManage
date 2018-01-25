@@ -5,16 +5,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%
-	String basePath="http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
-	
+	String basePath="http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";	
 %>
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>显示所有学生</title>
 <style  type="text/css">  
 	body {  
-	    background-image:url('images/listBg.jpg'); 
+	    background-image:url('images/showBg.jpg'); 
 	    background-size: cover;  /* 图片平铺拉伸，适应屏幕 */  
 	}  
 	h1{  
@@ -26,8 +25,7 @@
 	    margin:50px auto;  
 	    border-collapse: collapse;  
 	    text-align: center;  
-	} 
-	 
+	} 	 
 	#toAdd{ 
 	text-align: center;
 	}  

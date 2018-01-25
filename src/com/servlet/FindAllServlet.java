@@ -35,7 +35,7 @@ public class FindAllServlet extends HttpServlet{
 	            //SQL 语句从数据库查询中获取数据，并将数据返回到结果集中,
 	            //一个 ResultSet 对象控制一个光标指向当前行的结果集
                 ResultSet resultSet = statement.executeQuery(sql);  	              
-	            //把结果集的东西倒进ArrayList  
+	            //把结果集的东西倒进ArrayList集合 
 	            List<Student> ss = new ArrayList<Student>();  
 	            while(resultSet.next()){  
 	                Student s = new Student();  
@@ -50,7 +50,8 @@ public class FindAllServlet extends HttpServlet{
 	                ss.add(s);  
 	            }  	              
 	            //ArrayList放进request的属性里，这样jsp页面就能request.getAttribute("ss")  
-	            //拿出ArrayList了。  
+	            //拿出ArrayList了。
+	            //每当客户端请求一个页面时，JSP引擎就会产生一个新的request对象来代表这个请求。将取到的值传到下一个页面
 	            request.setAttribute("ss", ss);    
 	            resultSet.close();  
 	            statement.close();  
@@ -61,7 +62,7 @@ public class FindAllServlet extends HttpServlet{
 	        }  
 	          
 	          
-	        //跳转到显示页面  
+	        //跳转到显示页面 ，页面转发可传值 
 	        request.getRequestDispatcher("listStudent.jsp")    
 	        .forward(request, response);   
 	    }    

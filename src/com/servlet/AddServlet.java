@@ -39,7 +39,7 @@ public class AddServlet extends HttpServlet{
 	                    sqlpassword);  
 	              
 	            //编写SQL语句，这里不要用statement了，换用preparedstatement，因为  
-            //preparedstatement可以设置？为形参，然后set各个形参的实际值，statement没有此  
+                //preparedstatement可以设置？为形参，然后set各个形参的实际值，statement没有此  
 	            //功能。最后执行更新语句。  
 	            //此外，？不要加单双引号，否则报错java.sql.SQLException: Parameter index out of range (0 < 1 ).  
 	            String sql = "insert into student values("+id+",'"+username+"','"+password+"','"+sex+"','"+address+"')";    
