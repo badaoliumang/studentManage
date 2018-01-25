@@ -26,7 +26,7 @@ public class AddServlet extends HttpServlet{
 	        String password = request.getParameter("password");  
 	        String sex =request.getParameter("sex");  
 	        String address = request.getParameter("address");  
-	              
+	           
 	        try {  
 	            //先加载lib目录下的java-connect-mysql.jar驱动包  
 	            Class.forName("com.mysql.jdbc.Driver");    	              

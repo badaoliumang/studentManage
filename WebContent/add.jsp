@@ -11,7 +11,9 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>添加学生</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">  
 	body {  
 	    background-image:url('images/addBg.jpg');  
@@ -23,17 +25,9 @@
 	}  
 	  
 	form{  
-	    width:310px;  
+	    width:410px;  
 	    margin: 100px auto;  
-	}  
-	  
-	.item{  
-	    color:red;  
-	    width:100px;  
-	    display:inline-block;   
-	    text-align:right;  
-	}  
-	  
+	}  	  
 	.btn{  
 	    width:50px;  
 	}  
@@ -51,6 +45,7 @@ function validation() {
 	var id = document.getElementById('id').value; 
     var no = document.getElementById('username').value;          
     var pwd = document.getElementById('password').value;
+    var pwdc = document.getElementById('passwordConfirm').value;
     if(id == '') {
         alert('请输入id!');
         return false;
@@ -67,25 +62,102 @@ function validation() {
         alert('请输入密码!');
         return false;
     }
+    if(!(pwd == pwdc)){
+    	alert('两次密码不一致!');
+        return false;
+    }
   
 }
 
+
 </script>
+
 <body>
 
   <h1>欢迎来到新增学生页面</h1>  
-	    <form   action="addServlet" method="post" onsubmit='return validation();' >  
-	        <span class="item">学号：(9位数字)</span> <span><input type="text" name="id" id="id"/></span><br>
-	        <span class="item">username：</span> <span><input type="text" name="username" id="username"/></span><br>  
-	        <span class="item">password：</span> <span><input type="text" name="password" id="password" /></span><br>  
-	        <span class="item">sex：</span>      <span><input type="text" name="sex" /></span><br>  
-	        <span class="item">address：</span>  <span><input type="text" name="address" /></span><br>  
-	        <br><br>  
-	        <center>  
-	            <button class="btn" type="submit">添加</button>
-	            <input class="btn" type="reset" value="重置" />  
-	        </center>  
+	    <form   action="addServlet" method="post" class="form-horizontal" onsubmit='return validation();' >  
+	         <!-- 学号 -->
+	         <div class="form-group">
+               <label for="id" class="col-sm-4 control-label">学号:</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" class="form-control" id="id" name="id" placeholder="学号（九位数字）" maxlength=9>
+                  </div>
+             </div>
+             <!-- 姓名 -->
+             <div class="form-group">
+               <label for="username" class="col-sm-4 control-label">姓名:</label>
+                   <div class="col-sm-8">
+                     <input type="text" class="form-control" id="username" name="username" placeholder="姓名">
+                   </div>
+             </div>
+	         <!-- 密码 -->
+	         <div class="form-group" >
+               <label for="password" class="col-sm-4 control-label">密码:</label>
+               <div class="col-sm-8">
+                  <input type="password" class="form-control" id="password" name="password" >
+               </div>
+             </div>
+             <!-- 确认密码 -->
+             <div class="form-group">
+               <label for="passwordConfirm" class="col-sm-4 control-label">确认密码:</label>
+                 <div class="col-sm-8">
+                    <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" >
+                 </div>
+             </div>
+	         <!-- 性别-->
+             <div class="form-group">
+               <label for="username" class="col-sm-4 control-label">性别:</label>
+                 <div class="col-sm-8">
+                   <input type="radio" name="sex" value="男" checked="checked" >男&nbsp;
+                   <input type="radio" name="sex" value="女" >女
+                 </div>
+             </div>   
+	          <!-- 地址 -->
+         <!--  <div class="form-group">
+               <label for="address">地址：</label>
+               <input type="text" class="form-control" id="address" name="address" placeholder="地址">
+             </div> -->
+             
+              <div class="form-group">
+		         <label  class="col-sm-4 control-label">地址:</label>
+		      </div>
+              <!-- 三级联动测试 -->
+             <div data-toggle="distpicker" >           
+		        <div class="form-group">
+		        
+		          <!-- 省 -->		
+		          <div class="col-sm-4">
+		            <select class="form-control" id="province1"></select>
+		          </div>
+		          
+		           <!-- 市 -->		           
+		            <div class="col-sm-4">
+		            <select class="form-control" id="city1"></select>
+		            </div>
+		            
+		           <!-- 县 -->		         
+		             <div class="col-sm-4">
+		              <select class="form-control" id="district1"></select>
+		             </div><!-- 县 -->	          
+		        </div><!-- form-group-->
+             </div><!-- distpicker-->
+             
+              <!-- 底部按钮 -->
+             <div class="form-group">
+               <center>
+              <button type="submit" class="btn btn-success">添加</button>&nbsp;
+              <button type="reset" class="btn btn-primary">重置</button>
+               </center>
+             </div>	     
 	    </form>  
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<!-- 三级联动引入库 -->
+<script src="js/distpicker.data.js"></script>
+<script src="js/distpicker.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>JSP-JDBC-Servlet-Demo-学生管理系统</title>
 <link rel="stylesheet" href="css/login.css" type="text/css" />
-<link type="text/css" rel="stylesheet" href="font/font-awesome.min.css"/>
+<link type="text/css" rel="stylesheet" href="fonts/font-awesome.min.css"/>
 </head>
 <body class="loginpage">
 	<div class="loginbox">
