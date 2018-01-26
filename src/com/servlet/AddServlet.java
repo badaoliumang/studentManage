@@ -30,7 +30,7 @@ public class AddServlet extends HttpServlet{
 	        String city1 = request.getParameter("city1");//获得市
 	        String district1 = request.getParameter("district1");//获得区
 	        String address = province1+city1+district1;//拼接成地址
-	        //boolean isexist   
+  
 	        try {  
 	            //先加载lib目录下的java-connect-mysql.jar驱动包  
 	            Class.forName("com.mysql.jdbc.Driver");    	              

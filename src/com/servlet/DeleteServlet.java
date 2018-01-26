@@ -20,8 +20,7 @@ import com.bean.Student;
 	 * 可能是服务器没有重启的原因，也有可能是前台的缓存造成的找不到，仅仅刷新是不够的，缓存没有变，必须跳转页面，才有新缓存。 
 	 * @author Administrator 
 	 * 
-	 */  
-	public class DeleteServlet extends HttpServlet{  	      
+	 */  public class DeleteServlet extends HttpServlet{  	      
 	    //重写doGet方法  
 	    protected void doGet(HttpServletRequest request,    
 	        HttpServletResponse response) throws ServletException, IOException {    	          
@@ -29,16 +28,14 @@ import com.bean.Student;
 	        int id = Integer.valueOf(request.getParameter("id"));  	          
 	        try {  
 	            //先加载lib目录下的java-connect-mysql.jar驱动包  
-	            Class.forName("com.mysql.jdbc.Driver");    
-	              
+	            Class.forName("com.mysql.jdbc.Driver");                  
 	            //选择驱动类，连接地址、账号密码，连接MySQL  
 	            String driverClass="com.mysql.jdbc.Driver";  
 	            String url="jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf-8";  
 	            String sqlusername="root";  
                 String sqlpassword="523627";  
 	            Connection conn = DriverManager.getConnection(url, sqlusername,    
-	                    sqlpassword);  
-	              
+	                    sqlpassword);  	              
 	            //编写SQL语句，这里不要用statement了，换用preparedstatement，因为  
 	            //preparedstatement可以设置？为形参，然后set各个形参的实际值，statement没有此  
 	            //功能。最后执行更新语句。  
@@ -46,18 +43,14 @@ import com.bean.Student;
             String sql = "delete from student where id = ?";    
 	            PreparedStatement ps = conn.prepareStatement(sql);    
 	            ps.setInt(1, id);  
-            ps.executeUpdate();  
-	              
+            ps.executeUpdate();  	              
 	            //关闭连接  
 	            ps.close();    
-	            conn.close();    
-	              
+	            conn.close();                  
 	        } catch (SQLException | ClassNotFoundException e) {  
             // TODO Auto-generated catch block  
 	            e.printStackTrace();  
-	            }  
-	          
-	          
+	            }  	         	          
 	        //跳转到显示页面  
 	        response.sendRedirect("findAllServlet");  
 	        /*request.getRequestDispatcher("listStudent.jsp")   

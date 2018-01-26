@@ -10,46 +10,99 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>显示所有学生</title>
-<style  type="text/css">  
-	body {  
-	    background-image:url('images/showBg.jpg'); 
-	    background-size: cover;  /* 图片平铺拉伸，适应屏幕 */  
-	}  
-	h1{  
-	    margin:50px auto;  
-	    text-align: center;  
-	}  	  
-	table {  
-	    width:600px;  
-	    margin:50px auto;  
-	    border-collapse: collapse;  
-	    text-align: center;  
-	} 	 
-	#toAdd{ 
-	text-align: center;
-	}  
-	table,th,td{
-	border:1px solid black;
-	}  
-	th{
-	height:50px;
-	}  	
-	</style>   
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico">
+<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+<title>学生信息管理系统</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+  
 </head>
 <body>
- <h1>欢迎来到查看学生页面</h1>  
-	    <table style="border: 1px">  
-	        <tr>  
-	            <th>ID</th>  
-	            <th>username</th>  
-	            <th>password</th>  
-	            <th>sex</th>  
-	            <th>address</th>  
-                <th colspan="3">操作</th>  
-	        </tr>  
-	        <%  
-	           
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href=""><span class="glyphicon glyphicon-home" aria-hidden="true">学生管理系统</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href=""><span class="glyphicon glyphicon-search" aria-hidden="true"></a></li>
+            <li><a href="">帮助</a></li>
+            <li><a href="login.jsp">退出<span class="glyphicon glyphicon-off" aria-hidden="true"></a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="输入学号">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="add.jsp">添加学生 <span class="glyphicon glyphicon-plus" aria-hidden="true"></a></li>
+            <li><a href="#">按学号降序  <span class="glyphicon glyphicon-download" aria-hidden="true"></a></li>
+            <li><a href="#">按学号升序 <span class="glyphicon glyphicon-upload" aria-hidden="true"></a></li>
+            <li><a href="#">其他 </a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">查看学生</h1>
+
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>显示1</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>显示1</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>显示1</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>显示1</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+          </div>
+
+          <h2 class="sub-header"><span class="glyphicon glyphicon-user" aria-hidden="true">学生列表</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>学号</th>
+                  <th>姓名</th>
+                  <th>密码</th>
+                  <th>性别</th>
+                  <th>地址</th>
+                  <th colspan="3">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+             <%  	           
 	           List<Student> ss = (List<Student>)request.getAttribute("ss"); 
 	        if(ss!=null){
 	            for(Student s : ss){  
@@ -61,17 +114,32 @@
 	            <td><%=s.getSex() %></td>  
 	            <td><%=s.getAddress() %></td>  
 	            <td colspan="3">  
-	                <a href="update.jsp?id=<%=s.getId()%>&username=<%=s.getUsername()%>&password=<%=s.getPassword()%>&sex=<%=s.getSex()%>&address=<%=s.getAddress()%>">修改</a>  
-	                    
-	                <a href="deleteServlet?id=<%=s.getId()%>" onclick="return confirm('确定删除？')">删除</a>  
+	                <!-- 编辑图标加功能 -->
+	                <a href="update.jsp?id=<%=s.getId()%>&username=<%=s.getUsername()%>&password=<%=s.getPassword()%>&sex=<%=s.getSex()%>&address=<%=s.getAddress()%>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a>  
+	                <!-- 删除图标加功能 -->  &nbsp;
+	                <a href="deleteServlet?id=<%=s.getId()%>" onclick="return confirm('确定删除？')"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></a>  
 	            </td>  
-	        </tr>  
-	        <%   
+	        </tr>
+             <%   
 	            }  
 	        }
-	        %>  
-	    </table>  
-	    <div id="toAdd"><a href="add.jsp">增加学生</a></div>  
-
+	        %> 
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+	  
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="../../assets/js/vendor/holder.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

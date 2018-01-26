@@ -40,6 +40,11 @@ function isStudentNo(str) {
     var reg=/^[0-9]{9}$/;   /*定义验证表达式*/
     return reg.test(str);     /*进行验证*/
 }
+/*校验是否中文名称组成 */
+function ischina(str) {
+	var reg=/^[\u4E00-\u9FA5]{2,4}$/;   /*定义验证表达式*/
+	return reg.test(str);     /*进行验证*/
+}
 
 function validation() {
 	var id = document.getElementById('id').value; 
@@ -58,6 +63,10 @@ function validation() {
         alert('请输入用户名!');
         return false;
     }
+    if(!ischina(no)){
+    	alert('姓名必须为2-4位中文!');
+        return false;
+    }
     if(pwd == '') {
         alert('请输入密码!');
         return false;
@@ -66,7 +75,10 @@ function validation() {
     	alert('两次密码不一致!');
         return false;
     }
-  
+    /*运行到这里说明验证通过返回true    submit提交按钮起作用提交表单*/
+	alert("添加成功");
+	return true;
+
 }
 
 
@@ -87,7 +99,7 @@ function validation() {
              <div class="form-group">
                <label for="username" class="col-sm-4 control-label">姓名:</label>
                    <div class="col-sm-8">
-                     <input type="text" class="form-control" id="username" name="username" placeholder="姓名">
+                     <input type="text" class="form-control" id="username" name="username" placeholder="姓名（2-4位中文）"maxlength=4>
                    </div>
              </div>
 	         <!-- 密码 -->
@@ -137,7 +149,8 @@ function validation() {
              <div class="form-group">
                <center>
               <button type="submit" class="btn btn-success">添加</button>&nbsp;
-              <button type="reset" class="btn btn-primary">重置</button>
+              <button type="reset" class="btn btn-primary">重置</button>&nbsp;
+              <button type="button" class="btn btn-info" onclick="javascript:history.back(-1);">返回</button>
                </center>
              </div>	     
 	    </form>  
