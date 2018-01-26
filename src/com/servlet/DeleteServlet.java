@@ -1,21 +1,19 @@
-	package com.servlet;  
+package com.servlet;  
 	  
-	import java.io.IOException;  
-	import java.sql.Connection;  
-	import java.sql.DriverManager; 
-	import java.sql.PreparedStatement;  
-	import java.sql.ResultSet;  
-	import java.sql.SQLException;  
-	import java.sql.Statement;  
-	import java.util.ArrayList;  
-	import java.util.List;  
-	  
-	import javax.servlet.ServletException;  
-	import javax.servlet.http.HttpServlet;  
-	import javax.servlet.http.HttpServletRequest;  
-	import javax.servlet.http.HttpServletResponse;  
-	  
-    import com.bean.Student;  
+import java.io.IOException;  
+import java.sql.Connection;  
+import java.sql.DriverManager; 
+import java.sql.PreparedStatement;  
+import java.sql.ResultSet;  
+import java.sql.SQLException;  
+import java.sql.Statement;  
+import java.util.ArrayList;  
+import java.util.List;  	  
+import javax.servlet.ServletException;  
+import javax.servlet.http.HttpServlet;  
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  	  
+import com.bean.Student;  
 	/** 
 	 * 写DeleteServlet时遇到极大的困难，代码都对，前台jsp里<a href="deleteServlet?id=<%=s.getId()%>">删除</a> 
 	 * 对，后台接收id的值，然后删除也对，但是就是进不来servlet，前台提示找不到404。后来关了服务器、清理、重启、前台改了若干数据、删除，问题好了。 
@@ -23,15 +21,12 @@
 	 * @author Administrator 
 	 * 
 	 */  
-	public class DeleteServlet extends HttpServlet{  
-	      
+	public class DeleteServlet extends HttpServlet{  	      
 	    //重写doGet方法  
 	    protected void doGet(HttpServletRequest request,    
-	        HttpServletResponse response) throws ServletException, IOException {    
-	          
+	        HttpServletResponse response) throws ServletException, IOException {    	          
 	        //从jsp页面获取要修改的元素的id和各项修改后的值  
-	        int id = Integer.valueOf(request.getParameter("id"));  
-	          
+	        int id = Integer.valueOf(request.getParameter("id"));  	          
 	        try {  
 	            //先加载lib目录下的java-connect-mysql.jar驱动包  
 	            Class.forName("com.mysql.jdbc.Driver");    
@@ -40,7 +35,7 @@
 	            String driverClass="com.mysql.jdbc.Driver";  
 	            String url="jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf-8";  
 	            String sqlusername="root";  
-            String sqlpassword="523627";  
+                String sqlpassword="523627";  
 	            Connection conn = DriverManager.getConnection(url, sqlusername,    
 	                    sqlpassword);  
 	              

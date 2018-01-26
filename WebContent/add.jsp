@@ -113,35 +113,26 @@ function validation() {
                  </div>
              </div>   
 	          <!-- 地址 -->
-         <!--  <div class="form-group">
-               <label for="address">地址：</label>
-               <input type="text" class="form-control" id="address" name="address" placeholder="地址">
-             </div> -->
-             
               <div class="form-group">
 		         <label  class="col-sm-4 control-label">地址:</label>
 		      </div>
               <!-- 三级联动测试 -->
-             <div data-toggle="distpicker" >           
-		        <div class="form-group">
-		        
+              <div data-toggle="distpicker" >           
+		        <div class="form-group">	        
 		          <!-- 省 -->		
 		          <div class="col-sm-4">
-		            <select class="form-control" id="province1"></select>
-		          </div>
-		          
-		           <!-- 市 -->		           
-		            <div class="col-sm-4">
-		            <select class="form-control" id="city1"></select>
-		            </div>
-		            
-		           <!-- 县 -->		         
-		             <div class="col-sm-4">
-		              <select class="form-control" id="district1"></select>
-		             </div><!-- 县 -->	          
+		            <select class="form-control" id="province1" name="province1"></select>
+		          </div>		          
+		          <!-- 市 -->		           
+		          <div class="col-sm-4">
+		            <select class="form-control" id="city1" name="city1"></select>
+		          </div>		            
+		          <!-- 县 -->		         
+		          <div class="col-sm-4">
+		             <select class="form-control" id="district1" name="district1"></select>
+		          </div><!-- 县 -->	          
 		        </div><!-- form-group-->
-             </div><!-- distpicker-->
-             
+             </div><!-- distpicker-->            
               <!-- 底部按钮 -->
              <div class="form-group">
                <center>

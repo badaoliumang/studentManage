@@ -1,5 +1,6 @@
 package com.servlet;  
-import java.io.IOException;  
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;  
 import java.sql.DriverManager;  
 import java.sql.PreparedStatement;  
@@ -24,9 +25,12 @@ public class AddServlet extends HttpServlet{
 	        int id = Integer.valueOf(request.getParameter("id").trim());  
 	        String username = request.getParameter("username");  
 	        String password = request.getParameter("password");  
-	        String sex =request.getParameter("sex");  
-	        String address = request.getParameter("address");  
-	           
+	        String sex =request.getParameter("sex");
+	        String province1 = request.getParameter("province1");//获得省
+	        String city1 = request.getParameter("city1");//获得市
+	        String district1 = request.getParameter("district1");//获得区
+	        String address = province1+city1+district1;//拼接成地址
+	        //boolean isexist   
 	        try {  
 	            //先加载lib目录下的java-connect-mysql.jar驱动包  
 	            Class.forName("com.mysql.jdbc.Driver");    	              
@@ -36,16 +40,31 @@ public class AddServlet extends HttpServlet{
 	            String sqlusername="root";  
 	            String sqlpassword="523627";  
 	            Connection conn = DriverManager.getConnection(url, sqlusername,    
-	                    sqlpassword);  
-	              
+	                    sqlpassword);  	              
 	            //编写SQL语句，这里不要用statement了，换用preparedstatement，因为  
                 //preparedstatement可以设置？为形参，然后set各个形参的实际值，statement没有此  
 	            //功能。最后执行更新语句。  
 	            //此外，？不要加单双引号，否则报错java.sql.SQLException: Parameter index out of range (0 < 1 ).  
-	            String sql = "insert into student values("+id+",'"+username+"','"+password+"','"+sex+"','"+address+"')";    
-	            PreparedStatement ps = conn.prepareStatement(sql);    
-	            ps.executeUpdate();  
-              
+	            String sql = "select * from student where id = ? ";          
+	            PreparedStatement ps = conn.prepareStatement(sql);  
+	            ps.setInt(1, id);  
+	            //提取结果数据
+                ResultSet rs = ps.executeQuery();  
+                //如果id已经存在则，提示信息，并且回退网页，如果不存在则执行插入
+	            if(rs.next()){ 
+	            	//防止alert中文乱码
+	            	 response.setContentType("text/html;charset=gb2312");//在PrintWriter前面有效果  
+	    	         PrintWriter out = response.getWriter();//通过servlet的doget方法获取response对象，通过getWriter方法获取PrintWriter对象
+	    	         out.flush();//清空缓存
+	    	         out.println("<script  charset='utf-8' type='text/javascript'>");//输出script标签
+	    	         out.println("alert('学号已经存在！！');");//js语句：输出alert语句
+	    	         out.println("history.back();");//js语句：输出网页回退语句
+	    	         out.println("</script>");//输出script结尾标签
+	            }else{  
+	                 sql = "insert into student values("+id+",'"+username+"','"+password+"','"+sex+"','"+address+"')";
+	                 ps = conn.prepareStatement(sql);  
+	                 ps.executeUpdate();  
+	            }             
 	            //关闭连接  
 	            ps.close();    
 	            conn.close();    
@@ -53,9 +72,7 @@ public class AddServlet extends HttpServlet{
         } catch (SQLException | ClassNotFoundException e) {  
 	            // TODO Auto-generated catch block  
 	            e.printStackTrace();  
-	        }  
-	          
-	          
+	        }  	          
 	        //跳转到显示页面  
 	        response.sendRedirect("findAllServlet");  
 	        /*request.getRequestDispatcher("listStudent.jsp")   
