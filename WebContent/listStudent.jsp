@@ -24,9 +24,24 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
-  
+
 </head>
-<body>
+<script type='text/javascript'>
+
+function showstudentlist(){
+	var content=document.getElementById("studentlist");
+	var showorhide=document.getElementById("showorhide");	
+		content.style.visibility="visible";		
+}
+function hidestudentlist(){
+	var content=document.getElementById("studentlist");
+	var showorhide=document.getElementById("showorhide");	
+		 content.style.visibility="hidden";//隐藏
+	
+	
+}
+</script>  
+<body >
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -59,37 +74,21 @@
             <li class="active"><a href="add.jsp">添加学生 <span class="glyphicon glyphicon-plus" aria-hidden="true"></a></li>
             <li><a href="#">按学号降序  <span class="glyphicon glyphicon-download" aria-hidden="true"></a></li>
             <li><a href="#">按学号升序 <span class="glyphicon glyphicon-upload" aria-hidden="true"></a></li>
-            <li><a href="#">其他 </a></li>
+            <li><a href="javascript:hidestudentlist();" id="showorhide">隐藏学生&nbsp;<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></a></li>
+            <li><a href="javascript:showstudentlist();" id="showorhide">查看学生&nbsp;<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">查看学生</h1>
-
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>显示1</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>显示1</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>显示1</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>显示1</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-          </div>
-
+          <h1 class="page-header">公告</h1>
+		  <!-- 巨幕展示 -->
+	      <div class="jumbotron">
+		  <h1>Hello, world!</h1>
+		  <p>这是一个巨幕展示</p>
+		  <p><a class="btn btn-primary btn-lg" href="" role="button">Learn more</a></p>
+	      </div>
+		  <!-- 学生列表展示 -->
           <h2 class="sub-header"><span class="glyphicon glyphicon-user" aria-hidden="true">学生列表</h2>
-          <div class="table-responsive">
+          <div class="table-responsive" id="studentlist">
             <table class="table table-striped">
               <thead>
                 <tr>
