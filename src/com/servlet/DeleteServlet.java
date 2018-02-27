@@ -1,6 +1,7 @@
 package com.servlet;  
 	  
 import java.io.IOException;  
+
 import java.sql.Connection;  
 import java.sql.DriverManager; 
 import java.sql.PreparedStatement;  
@@ -13,7 +14,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;  	  
-import com.bean.Student;  
+import com.bean.Student;
+import com.bean.StudentDao;  
 	/** 
 	 * 写DeleteServlet时遇到极大的困难，代码都对，前台jsp里<a href="deleteServlet?id=<%=s.getId()%>">删除</a> 
 	 * 对，后台接收id的值，然后删除也对，但是就是进不来servlet，前台提示找不到404。后来关了服务器、清理、重启、前台改了若干数据、删除，问题好了。 
@@ -27,15 +29,17 @@ import com.bean.Student;
 	        //从jsp页面获取要修改的元素的id和各项修改后的值  
 	        int id = Integer.valueOf(request.getParameter("id"));  	          
 	        try {  
-	            //先加载lib目录下的java-connect-mysql.jar驱动包  
+	          /*  //先加载lib目录下的java-connect-mysql.jar驱动包  
 	            Class.forName("com.mysql.jdbc.Driver");                  
 	            //选择驱动类，连接地址、账号密码，连接MySQL  
 	            String driverClass="com.mysql.jdbc.Driver";  
-	            String url="jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf-8";  
+	            String url="jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf-8&useSSL=false&verifyServerCertificate=false";  
 	            String sqlusername="root";  
                 String sqlpassword="523627";  
 	            Connection conn = DriverManager.getConnection(url, sqlusername,    
-	                    sqlpassword);  	              
+	                    sqlpassword);  */	
+	        	StudentDao studentDao=new StudentDao();
+	            Connection conn = studentDao.getConnection(); 
 	            //编写SQL语句，这里不要用statement了，换用preparedstatement，因为  
 	            //preparedstatement可以设置？为形参，然后set各个形参的实际值，statement没有此  
 	            //功能。最后执行更新语句。  
@@ -47,7 +51,7 @@ import com.bean.Student;
 	            //关闭连接  
 	            ps.close();    
 	            conn.close();                  
-	        } catch (SQLException | ClassNotFoundException e) {  
+	        } catch (SQLException e) {  
             // TODO Auto-generated catch block  
 	            e.printStackTrace();  
 	            }  	         	          

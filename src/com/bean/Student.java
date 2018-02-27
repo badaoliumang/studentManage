@@ -6,6 +6,7 @@ public class Student {
 	 	    private String password;  
 	 	    private String sex;  
 	 	    private String address;  
+	 	    public static final int PAGE_SIZE = 3;
 	 	    public int getId() {  
 	 	        return id;  
 	 	    }  

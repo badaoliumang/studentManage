@@ -13,7 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;  	  
-import com.bean.Student;  
+import com.bean.Student;
+import com.bean.StudentDao;  
 	  
 public class AddServlet extends HttpServlet{  
 	      
@@ -32,15 +33,17 @@ public class AddServlet extends HttpServlet{
 	        String address = province1+city1+district1;//拼接成地址
   
 	        try {  
-	            //先加载lib目录下的java-connect-mysql.jar驱动包  
+	           /* //先加载lib目录下的java-connect-mysql.jar驱动包  
 	            Class.forName("com.mysql.jdbc.Driver");    	              
 	            //选择驱动类，连接地址、账号密码，连接MySQL  
 	            String driverClass="com.mysql.jdbc.Driver";
- 	            String url="jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf-8";  
+ 	            String url="jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf-8&useSSL=false&verifyServerCertificate=false";  
 	            String sqlusername="root";  
-	            String sqlpassword="523627";  
-	            Connection conn = DriverManager.getConnection(url, sqlusername,    
-	                    sqlpassword);  	              
+	            String sqlpassword="523627";  */
+	        	//调用建立连接
+	        	StudentDao studentDao=new StudentDao();
+	            Connection conn = studentDao.getConnection(); 
+	            
 	            //编写SQL语句，这里不要用statement了，换用preparedstatement，因为  
                 //preparedstatement可以设置？为形参，然后set各个形参的实际值，statement没有此  
 	            //功能。最后执行更新语句。  
@@ -69,7 +72,7 @@ public class AddServlet extends HttpServlet{
 	            ps.close();    
 	            conn.close();    
 	              
-        } catch (SQLException | ClassNotFoundException e) {  
+        } catch (SQLException e) {  
 	            // TODO Auto-generated catch block  
 	            e.printStackTrace();  
 	        }  	          

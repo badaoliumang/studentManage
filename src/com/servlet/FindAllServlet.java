@@ -10,65 +10,121 @@ import java.util.List;
 import javax.servlet.ServletException;  
 import javax.servlet.http.HttpServlet;  
 import javax.servlet.http.HttpServletRequest;  
-import javax.servlet.http.HttpServletResponse;  	  
-import com.bean.Student;    
-public class FindAllServlet extends HttpServlet{        
+import javax.servlet.http.HttpServletResponse;
+import org.apache.jasper.tagplugins.jstl.core.Out;
+import com.bean.Student;
+import com.bean.StudentDao;
+import jdk.nashorn.internal.ir.RuntimeNode.Request;    
+public class FindAllServlet extends HttpServlet{   
+	//private static final long serialVersionUID = 1L;
 	    //重写doGet方法  
 	    protected void doGet(HttpServletRequest request,    
-	        HttpServletResponse response) throws ServletException, IOException {    	    	
-	        try {  
-	            //先加载lib目录下的java-connect-mysql.jar驱动包  ,然后注册驱动
-	            Class.forName("com.mysql.jdbc.Driver");    	         
-	            //选择驱动类，连接地址、账号密码，连接MySQL  
-	            String driverClass="com.mysql.jdbc.Driver";  
-	            String url="jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf-8";  
-	            String sqlusername="root";  
-	            String sqlpassword="523627"; 
-	            //数据库url绑定，与数据库建立连接
-	            Connection conn = DriverManager.getConnection(url, sqlusername,sqlpassword);  	             	              
-	            //编写SQL语句，执行，拿到结果集  
-	            String sql = "select * from student";
-	            //发送sql命令到数据库，并接受数据
-	            //statement适用于运行静态SQL语句，statement接口不接受参数
-	            //PreparedStatement 计划多次使用SQL语句，适用于接受输入的参数-？
-	            Statement statement = conn.createStatement();
-	            //SQL 语句从数据库查询中获取数据，并将数据返回到结果集中,
-	            //一个 ResultSet 对象控制一个光标指向当前行的结果集
-                ResultSet resultSet = statement.executeQuery(sql);  	              
-	            //把结果集的东西倒进ArrayList集合 
-	            List<Student> ss = new ArrayList<Student>();  
-	            while(resultSet.next()){  
-	                Student s = new Student();  
-	                s.setId(resultSet.getInt("id"));  
-	                s.setUsername(resultSet.getString("username"));  
-	                s.setPassword(resultSet.getString("password"));  
-	                s.setSex(resultSet.getString("sex"));  
-	                s.setAddress(resultSet.getString("address"));  	                  
-	                //后台打印，试看有没有拿到  
-	                /* String ms = resultSet.getInt("id")+resultSet.getString("username"); 
-	                System.out.println(ms);  */         
-	                ss.add(s);  
-	            }  	              
-	            //ArrayList放进request的属性里，这样jsp页面就能request.getAttribute("ss")  
-	            //拿出ArrayList了。
-	            //每当客户端请求一个页面时，JSP引擎就会产生一个新的request对象来代表这个请求。将取到的值传到下一个页面
-	            request.setAttribute("ss", ss);    
-	            resultSet.close();  
+	        HttpServletResponse response) throws ServletException, IOException {
+			
+
+	       	// 当前页码
+
+	    	int currPage = 1;
+
+	    	// 判断传递页码是否有效
+	    	//System.out.println(request.getParameter("page"));
+	    	String temp=request.getParameter("page");
+	    	System.out.println(temp);
+	    	if(temp != null){
+	    	System.out.println(temp);
+	    	// 对当前页码赋值
+
+	    	currPage = Integer.parseInt(temp);
+	    	//System.out.println(temp);
+	    	//System.out.println(currPage);
+
+	    	}
+
+	    	// 实例化ProductDao
+	    	StudentDao dao=new StudentDao();
+	    	List<Student> list=dao.find(currPage);
+	    	// 将list放置到request之中
+	            request.setAttribute("list", list); 
+	         // 总页数
+
+	            int pages ;
+
+	            // 查询总记录数
+
+	            int count = dao.findCount();
+
+	            // 计算总页数
+
+	            if(count % Student.PAGE_SIZE == 0){
+
+	            // 对总页数赋值
+
+	            pages = count /Student.PAGE_SIZE;
+
+	            }else{
+
+	            // 对总页数赋值
+
+	            pages = count / Student.PAGE_SIZE + 1;
+	            
+
+	            }
+
+	            // 实例化StringBuffer
+
+	            StringBuffer sb = new StringBuffer();
+
+	            // 通过循环构建分页条
+
+	            for(int i=1; i <= pages; i++){
+
+	            // 判断是否为当前页
+
+	            if(i == currPage){
+
+	            // 构建分页条
+
+	            sb.append("『" + i + "』");
+	            //System.out.println(i);
+	            //System.out.println(currPage);
+	            }else{
+	            //request.setAttribute("page", i);
+	            // 构建分页条
+		        //sb.append("<a href='FindAllServlet?page=123'>" + i + "</a>");
+                
+	            sb.append("<a href='findAllServlet?page=" + i + "'>" + i + "</a>");
+	            //System.out.println(i);
+	            //System.out.println(request.getAttribute(page));
+	           
+	            }
+
+	            // 构建分页条
+
+	            sb.append("　");
+
+	            }
+	          
+	            // 将分页条的字符串放置到request之中
+
+	            request.setAttribute("bar", sb.toString());
+	  /*          resultSet.close();  
 	            statement.close();  
 	              
 	        } catch (SQLException | ClassNotFoundException e) {  
 	            // TODO Auto-generated catch block  
 	            e.printStackTrace();  
-	        }  
+	        }  */
 	          
 	          
 	        //跳转到显示页面 ，页面转发可传值 
 	        request.getRequestDispatcher("listStudent.jsp")    
 	        .forward(request, response);   
+	        //doPost(request, response);
 	    }    
 	    
 	    protected void doPost(HttpServletRequest request,    
 	            HttpServletResponse response) throws ServletException, IOException {    
-	        doGet(request, response);    
+	        doGet(request, response);  
+	        
 	    }    
 	}  

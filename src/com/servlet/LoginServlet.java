@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 		            //选择驱动类，连接地址、账号密码，连接MySQL  
 		            String driverClass="com.mysql.jdbc.Driver";  
 		            //student为数据库名称
-		            String url="jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf-8"; 
+		            String url="jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf-8&useSSL=false&verifyServerCertificate=false"; 
 		            //用户名
 		            String sqlusername="root"; 
 		            //密码

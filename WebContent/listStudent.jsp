@@ -102,7 +102,7 @@ function hidestudentlist(){
               </thead>
               <tbody>
              <%  	           
-	           List<Student> ss = (List<Student>)request.getAttribute("ss"); 
+	           List<Student> ss = (List<Student>)request.getAttribute("list"); 
 	        if(ss!=null){
 	            for(Student s : ss){  
 	        %>  
@@ -123,6 +123,12 @@ function hidestudentlist(){
 	            }  
 	        }
 	        %> 
+	        <tr>
+              <td align="center" colspan="5" bgcolor="white">
+              <%=request.getAttribute("bar")%>
+             
+              </td>
+             </tr>
               </tbody>
             </table>
           </div>
