@@ -57,7 +57,7 @@ function hidestudentlist(){
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href=""><span class="glyphicon glyphicon-search" aria-hidden="true"></a></li>
-            <li><a href="">帮助</a></li>
+            <li><a href="help.jsp">帮助</a></li>
             <li><a href="login.jsp">退出<span class="glyphicon glyphicon-off" aria-hidden="true"></a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -82,9 +82,9 @@ function hidestudentlist(){
           <h1 class="page-header">公告</h1>
 		  <!-- 巨幕展示 -->
 	      <div class="jumbotron">
-		  <h1>Hello, world!</h1>
-		  <p>这是一个巨幕展示</p>
-		  <p><a class="btn btn-primary btn-lg" href="" role="button">Learn more</a></p>
+		  <h1>广告位招商</h1>
+		  <p>广告内容</p>
+		  <p><a class="btn btn-primary btn-lg" href="" role="button">广告详情链接</a></p>
 	      </div>
 		  <!-- 学生列表展示 -->
           <h2 class="sub-header"><span class="glyphicon glyphicon-user" aria-hidden="true">学生列表</h2>

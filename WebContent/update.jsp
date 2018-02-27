@@ -10,32 +10,16 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>编辑学生信息</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">  
 	body {  
-	    background-image:url('images/greenbg.png');  
+	    background-image:url('images/updatebg.jpg');  
 	    background-size: cover;  
-	}  
-	h1{  
-	    margin:50px auto;  
-	    text-align: center;  
-	}  
-	  
-	form{  
-	    width:310px;  
-	    margin: 100px auto;  
-	}  
-	  
-	.item{  
-	    color:red;  
-	    width:100px;  
-	    display:inline-block;   
-	    text-align:right;  
-	}  
-	  
-	.btn{  
-	    width:50px;  
-	}  
+	} 
+	h1{
+	text-align:center;
+	}   
 	</style>  
 
 </head>
@@ -51,19 +35,53 @@
 	    <!-- id是唯一定位元素的标识符，不能修改，但可以显示给人看，此时不要用disabled限制别人访问，因为  
 	         它会使id的name连同value都作废，不能提交给servlet；用read-only，它可以提交。  
 	     -->  
-	    <h1>欢迎来到修改学生信息页面</h1>  
-	    <form action="updateServlet" method="post">  
-	        <span class="item">ID：</span>       <span><input type="text" name="id" value="<%=id %>" readonly="readonly"/></span><br>  
-	        <span class="item">username：</span> <span><input type="text" name="username" value="<%=username %>" /></span><br>  
-	        <span class="item">password：</span> <span><input type="text" name="password" value="<%=password %>" /></span><br>  
-	        <span class="item">sex：</span>      <span><input type="text" name="sex" value="<%=sex %>" /></span><br>  
-	        <span class="item">address：</span>  <span><input type="text" name="address" value="<%=address %>" /></span><br>  
-	        <br><br>  
-	        <center>  
-	            <input class="btn" type="submit" value="提交" />  
-	            <input class="btn" type="reset" value="重置" />  
-	        </center>  
+	    <h1>欢迎来到修改学生信息页面</h1><br>  <br> 
+	    <form action="updateServlet" method="post" class="form-horizontal col-md-offset-4 " >  
+	        <!-- 学号显示 -->
+	        <div class="form-group">
+		    <label for="input1" class="col-sm-2 control-label">学号：</label>
+		    <div class="col-sm-4">
+		      <input type="text" class="form-control" id="input1" name="id" value="<%=id %>" readonly="readonly" >
+		    </div>
+		    </div>
+	        <!-- 姓名显示 -->
+	        <div class="form-group">
+		    <label for="input2" class="col-sm-2 control-label">姓名：</label>
+		    <div class="col-sm-4">
+		      <input type="text" name="username" value="<%=username %>" class="form-control" id="input2" >
+		    </div> 
+		     </div>
+		    <!-- 密码显示 -->
+	        <div class="form-group">
+		    <label for="input3" class="col-sm-2 control-label">密码：</label>
+		    <div class="col-sm-4">
+		      <input type="text" class="form-control" id="input3" name="password" value="<%=password %> ">
+		    </div>  
+		     </div>
+		    <!-- 性别显示 -->
+	        <div class="form-group">
+		    <label for="input4" class="col-sm-2 control-label">学号：</label>
+		    <div class="col-sm-4">
+		      <input type="text" class="form-control" id="input4" name="sex" value="<%=sex %>">
+		    </div> 
+		     </div>
+		    <!-- 地址显示 -->
+	        <div class="form-group">
+		    <label for="input5" class="col-sm-2 control-label">学号：</label>
+		    <div class="col-sm-4">
+		      <input type="text" class="form-control" id="input5" name="address" value="<%=address %> ">
+		    </div>        
+            </div>
+			<div class="form-group">
+			 <div class="col-sm-offset-2 col-sm-10">
+			    <button type="submit" class="btn btn-default">提交</button>
+			  </div>
+			</div>
+            </div>
 	    </form>  
-
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
